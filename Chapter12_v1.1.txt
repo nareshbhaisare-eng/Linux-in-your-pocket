@@ -1,0 +1,200 @@
+####  command to install ####
+sudo apt update
+sudo apt install android-tools-adb android-tools fastboot
+
+#### commands download, extract, and add Android Platform Tools to the system PATH ####
+wget
+https://dl.google.com/android/repository/platformtools-latest-linux.zip
+unzip platform-tools-latest-linux.zip
+export PATH=$PATH:/home/<user>/Download
+
+#### lists all Android devices connected to the system ####
+adb devices
+
+#### To start a shell session ####
+adb shell
+
+#### command checks if the Chrome app is running on a connected Android device ####
+adb shell ps -A | grep com.android.chrome
+
+#### File management on Android devices ####
+adb pull /sdcard/DCIM/photo.jpg ~/Pictures/
+adb push hello.txt /sdcard/Download/
+adb shell rm /sdcard/Download/unwanted.mp3
+adb shell mv /sdcard/Download/notes.txt /sdcard/Documents/
+adb shell cp /data/temp/template.doc /sdcard/Documents/
+adb shell ls /data/data/
+
+#### Inspecting logs and debugging ####
+adb logcat
+adb logcat -s ActivityManager
+adb logcat *:W 
+adb logcat | grep MyApp
+adb logcat -d > crash_log.txt
+
+#### File forensic commands for 
+analyzing hex files ####
+file libtirpc.so.3.0.0
+exiftool libtirpc.so.3.0.0
+binwalk libtirpc.so.3.0.0
+
+#### Managing apps via command line ####
+adb install myapp.apk
+adb install -r myapp.apk
+adb uninstall com.example.myapp
+adb shell pm grant com.example.myapp android.permission.CAMERA
+adb shell am start -n com.example.myapp/.MainActivity
+
+#### Rebooting and recovery operations ####
+adb reboot
+adb reboot bootloader
+adb reboot recovery
+
+#### List devices in Fastboot mode, unlock the bootloader, flash a custom recovery, and reboot the device ####
+fastboot devices
+fastboot oem unlock
+fastboot flash recovery TWRP.img
+fastboot reboot
+
+#### gain root access on an Android device and remount the /system partition as read-write ####
+adb shell su
+adb shell
+su
+mount -o remount,rw /system
+
+#### To modify system files ####
+adb push hosts /system/etc/hosts
+
+#### launch an Android app’s main activity and capture error logs to a file ####
+adb shell am start -n com.example.app/.MainActivity
+adb logcat *:E > crash.txt
+
+#### set git user identity, list Git configuration, and set the default editor ####
+git config --global user.name "Salish Williams"
+git config --global user.email salish@example.com
+git config –list
+git config --global core.editor "nano"
+
+#### initialize a new Git repository with options for directory, branch name, bare repo, or separate Git directory. ####
+git init
+git init myproject 
+git init --bare
+git init --initial-branch=main
+git init --separate-git-dir=<dir path>
+
+#### clone a Git repository with options for branch, shallow copy, submodules, or bare repository ####
+git clone https://github.com/user/project.git
+git clone -b dev https://github.com/user/project.git
+git clone --depth 1 https://github.com/user/project.git
+git clone --recurse-submodules https://github.com/user/project.git
+git clone --bare https://github.com/user/project.git
+
+#### commands stage changes, view differences, and commit files in a Git repository ####
+git add main.c
+git add . 
+git reset <file>
+git diff
+git diff –staged
+git commit -m "message"
+git commit -m "Added verification functionality"
+git commit -a -m "message"
+
+#### create a new branch and switch to a specified branch ####
+git branch featureX
+git checkout <name>
+
+#### commands switch or create branches, merge changes, and delete a branch ####
+git checkout featureX
+git checkout -b <name>
+git merge <branch>
+git branch -d featureX
+
+#### manage remote repositories: add a remote, push changes, pull updates, and fetch data from Git remotes ####
+git remote add origin https://github.com/user/repo.git
+git push -u origin main
+git push
+git pull
+git fetch
+
+#### view Git commit history in different formats and display details of a specific commit####
+git log
+git log –oneline
+git log --graph --oneline –decorate
+git show <commit_id>
+
+#### undo changes in Git: restore files, reset commits, revert commits, and remove untracked files ####
+git restore <file>
+git reset --hard <commit_id>
+git revert <commit_id>
+git clean –fd
+
+#### temporarily save, list, reapply, and delete changes ####
+git stash
+git stash list
+git stash apply
+git stash drop
+
+#### List all tags ####
+git tag v1.0
+
+#### ynchronize branches with remotes, rebase changes, and commit updates ####
+git pull origin main
+git push origin featureX
+git rebase main
+git add . && git commit
+
+#### track file changes (blame), apply specific commits (cherry-pick), view reference history (reflog), and find faulty commits####
+git blame <file>
+git cherry-pick <commit_id>
+git reflog
+git bisect
+
+#### clean the build environment and set kernel build configurations for different architectures ####
+make mrproper
+make x86_64_defconfig
+make arm64_defconfig
+make rpi_defconfig
+
+#### Set the architecture and cross-compiler, configure the build, and compile the kernel using all CPU cores####
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-linux-gnumake
+defconfig
+make -j$(nproc)
+
+#### compile the Linux kernel or its images for specific architectures using a cross-compiler and multiple CPU cores####
+make ARCH=arm64 CROSS_COMPILE=aarch64-linuxgnu- -j$(nproc)
+make ARCH=arm64 CROSS_COMPILE=aarch64-linuxgnu- Image -j$(nproc)
+make ARCH=arm64 CROSS_COMPILE=aarch64-linuxgnu- Image.gz -j$(nproc)
+make bzImage -j$(nproc)
+
+#### build device tree blobs (DTBs) for ARM64 platforms, including Raspberry Pi models, using a cross-compiler####
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnudtbs -j$(nproc)
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnubcm2711- rpi-4-b.dtb
+
+#### build kernel modules and install them to a specified directory using a cross-compiler ####
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnumodules -j$(nproc)
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=out modules_install
+
+#### nstall compiled kernel modules and the kernel itself on the system ####
+sudo make modules_install
+sudo make install
+
+#### copy the compiled kernel image, device tree files, and modules to the target boot and module directories####
+cp arch/arm64/boot/Image /mnt/sdcard/boot/
+cp arch/arm64/boot/dts/*.dtb /mnt/sdcard/boot/
+rsync -av out/lib/modules/ /mnt/sdcard/lib/modules/
+
+#### Cleaning up build ####
+make clean
+make mrproper
+make distclean
+
+#### Cross-compile for Raspberry Pi 4 -ARM64####
+cd ~/linux-6.6
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-linux-gnumake bcm2711_defconfig
+make -j8 Image modules dtbs
+mkdir -p ../rpi_kernel_install
+make INSTALL_MOD_PATH=../rpi_kernel_install modules_install
+cp arch/arm64/boot/Image ../rpi_kernel_install/
+cp arch/arm64/boot/dts/broadcom/*.dtb ../rpi_kernel_install/

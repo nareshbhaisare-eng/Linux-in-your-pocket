@@ -1,0 +1,160 @@
+####List block devices ####
+lsblk -f
+
+####Displays block device attributes, including their file system types and UUIDs ####
+blkid
+
+####Present working directory ####
+pwd
+
+####Navigating the directory tree ####
+cd /var/log
+pwd
+
+####Viewing directory contents ####
+ls -lh
+
+####Creating and removing directories ####
+mkdir projects
+
+####Removes an empty directory ####
+rm -r projects
+
+####Displays directories and files in a hierarchical, tree-like view. ####
+tree /home/user
+
+####Creating files ####
+touch newfile.txt
+
+####Copying files ####
+cp source.txt destination.txt
+cp -r mydir backup_dir
+
+####Moving and renaming files ####
+mv file.txt /home/user/documents/
+mv oldname.txt newname.txt
+
+####Deleting files ####
+rm oldfile.txt
+rm -r olddir/
+rm -rf temp/
+
+####Locating files ####
+find /home/user -name "*.txt"
+
+####Quickly finding files ####
+locate passwd
+
+####Listing file information ####
+ls -l example.txt
+
+####Changing permissions ####
+chmod u+x script.sh
+chmod g-w example.txt
+chmod 755 script.sh
+chmod 644 example.txt
+
+####Changing ownership  ####
+chown alice example.txt
+chown alice:staff example.txt
+
+####Changing group owner  ####
+chgrp staff example.txt
+
+####Launch fdisk for a disk ####
+sudo fdisk –l
+sudo fdisk /dev/sdb
+
+####Creating partitions with parted ####
+sudo parted /dev/sdb
+(parted) mklabel gpt
+(parted) mkpart primary ext4 0% 100%
+(parted) print 
+(parted) quit
+
+####Creating file system image ####
+dd if=/dev/zero of=rootfs.img bs=1M count=100
+mkfs.ext4 rootfs.img
+mkdir /mnt/rootfs
+sudo mount -o loop rootfs.img /mnt/rootfs
+sudo cp -r my-rootfs/* /mnt/rootfs
+sudo umount /mnt/rootfs
+
+####Using mksquashfs ####
+mksquashfs rootfs_dir rootfs.squashfs -comp xz
+
+####Using dd for raw disk/partition images ####
+dd if=/dev/sdX of=disk.img bs=4M
+
+####Create cpio ####
+cd initramfs_dir
+find . | cpio -o --format=newc > initramfs.cpio | gzip initramfs.cpio
+
+####Mounting and unmounting file systems ####
+sudo mount /dev/sdb1 /mnt/data
+sudo mount -t ext4 /dev/sdb1 /mnt/data
+sudo mount -o ro,nosuid,noexec /dev/sdb1 /mnt/data
+
+####Unmount a filesystem ####
+sudo umount /mnt/data
+sudo umount /dev/sdb1
+
+####Mount all entries in fstab ####
+sudo mount -a
+
+####Show mounted filesystem usage ####
+df -h
+
+####Show usage of a directory recursively ####
+du -sh /home/*
+
+####Analyzing space utilization visually using ncdu ####
+sudo apt install ncdu
+install ncdu
+sudo ncdu /home
+
+####Enable quota support  ####
+/dev/sda1 /home ext4 usrquota,grpquota 1 2
+
+####Remount the filesystem ####
+sudo mount -o remount /home
+
+####Initialize quota tracking ####
+sudo quotacheck -cug /home
+sudo quotaon /home
+
+####Set user quota ####
+sudo edquota username
+
+####View quotas ####
+quota -u username
+repquota /home
+
+####Clear APT cache ####
+sudo apt clean
+sudo apt autoclean
+
+####Remove temporary files ####
+sudo rm -rf /tmp/*
+
+####Clear journal logs (systemd) ####
+sudo journalctl --vacuum-time=7d
+
+####Identifying and removing unused packages ####
+sudo apt autoremove
+sudo apt list --installed | grep -i unused
+sudo yum autoremove
+
+####Verifying and repairing filesystems ####
+sudo fsck -y /dev/sdb1
+
+####•	Viewing and adjusting filesystem parameters ####
+sudo tune2fs -l /dev/sda1
+sudo tune2fs -c 30 /dev/sda1
+sudo tune2fs -i 2w /dev/sda1
+
+####Labeling filesystems  ####
+sudo e2label /dev/sdb1 DATA_DISK
+sudo e2label /dev/sdb1
+sudo mount -L DATA_DISK /mnt/data
+

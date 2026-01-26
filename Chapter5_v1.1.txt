@@ -1,0 +1,83 @@
+#### View current IP addresses####
+ip a
+
+#### Bring interfaces up/down ####
+sudo ip link set eth0 up
+sudo ip link set eth0 down
+
+#### Check hostname ####
+hostname
+
+#### Set hostname ####
+sudo hostnamectl set-hostname new-hostname
+
+#### Check DNS settings ####
+cat /etc/resolv.conf
+
+#### View routing table ####
+ip route
+
+#### Add default gateway ####
+sudo ip route add default via 192.168.1.1
+
+#### Basic network commands ####
+ping google.com
+traceroute google.com
+ss -tuln
+
+#### Accessing and managing remote 
+systems ####
+ssh user@remote_ip
+scp file.txt user@remote_ip:/home/user/
+scp -r folder/ user@remote_ip:/home/user/
+sudo systemctl start ssh
+sudo systemctl enable ssh
+
+#### Remote file editing via SSH ####
+vi /etc/ip.conf
+vim /etc/ip.conf
+nano /etc/ip.conf
+
+#### mount remote file 
+systems locally ####
+sudo apt install sshfs
+mkdir ~/remote_folder
+sshfs user@remote_ip:192.168.1.11 ~/remote_folder
+
+#### to 
+view and configure network interfaces ####
+ifconfig
+
+#### Modify routes or bring interfaces up/down ####
+sudo ip link set eth0 up
+sudo ip addr add 192.168.1.10/24 dev eth0
+
+#### Connectivity test ####
+ping google.com
+ping 192.168.1.45
+ping 10.125.21.12
+
+#### Installing and starting SSH server ####
+sudo apt install openssh-server
+sudo systemct1 start ssh
+sudo systemct1 enable ssh
+
+#### ####
+ssh keygen
+ssh-copy-id username@remote_ip
+
+#### Key-based authentication ####
+sudo ufw allow ssh 
+sudo ufw allow 2469/tcp 
+sudo ufw enable
+sudo systemct1 restart ssh
+
+#### Secure copy ####
+scp myfile.txt user@remote: /home/user/
+scp –r myfolder/ user@remote: /home/user/
+
+#### Remote synchronization ####
+rsync –avz /local/folder/
+user@remote:/remote/folder/
+
+

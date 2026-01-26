@@ -1,0 +1,126 @@
+#### To check your current shell ####
+echo $SHELL
+
+#### Basic scripting concepts ####
+greeting="Hello"
+name="World"
+echo "$greeting, $name!"
+
+#### Reading input from users or files and displaying results ####
+echo "Enter your name:"
+read username
+echo "Welcome, $username!"
+
+#### Command substitution####
+current_date=$(date)
+echo "Today's date is $current_date"
+
+#### Environment variables####
+echo $HOME
+echo $PATH
+
+#### Detect file type ####
+#!/bin/bash
+read -p "Enter a filename: " filename
+case "$filename" in
+*.jpg | *.jpeg)
+echo "It's a JPEG image file."
+;;
+*.png)
+echo "It's a PNG image file."
+;;
+*.txt)
+echo "It's a text file."
+;;
+*)
+echo "Unknown file type."
+;;
+esac
+
+#### Print numbers from 1 to 5 ####
+#!/bin/bash
+for (( i=1; i<=5; i++ ))
+do
+echo "Number: $i"
+done
+
+#### Create five files ####
+#!/bin/bash
+for i in {1..5}
+do
+touch "file$i.txt"
+echo "Created file$i.txt"
+done
+
+#### Print numbers from 1 to 5 ####
+#!/bin/bash
+i=1
+while [ $i -le 5 ]
+do
+echo "Number: $i"
+((i++))
+Done
+
+#### Wait for a file to exist ####
+#!/bin/bash
+file="ready.txt"
+until [ -f "$file" ]
+do
+echo "Waiting for $file to be created..."
+sleep 2
+done
+echo "$file is now available!"
+
+#### Running script with arguments ####
+#!/bin/bash
+echo "Script name: $0"
+echo "First argument: $1"
+echo "Total arguments: $#"
+
+#### Automated backup ####
+#!/bin/bash
+src="/home/user/documents"
+dest="/home/user/backup_$(date +%F)"
+mkdir -p "$dest"
+p -r "$src"/* "$dest"
+echo "Backup completed successfully!"
+
+#### Script parameters and arguments ####
+#!/bin/bash
+echo "Updating system..."
+sudo apt update && sudo apt upgrade -y
+echo "Update complete."
+
+#### Log file monitor ####
+#!/bin/bash
+log_file="/var/log/syslog"
+echo "Displaying the last 20 lines of
+$log_file"
+tail -n 20 "$log_file"
+
+#### Disk usage warning ####
+#!/bin/bash
+usage=$(df / | grep / | awk '{ print $5 }' |
+sed 's/%//g')
+threshold=80
+if [ $usage -gt $threshold ]; then
+echo "Warning: Disk usage is above
+$threshold%."
+Fi
+
+#### User report script ####
+#!/bin/bash
+echo "Generating user report..."
+echo "Report generated on: $(date)" > user_report.txt
+echo "Hostname: $(hostname)" >>
+user_report.txt
+echo "Current users:" >>
+user_report.txt
+who >> user_report.txt
+echo "User details from /etc/passwd:"
+>> user_report.txt
+cut -d: -f1,3,6 /etc/passwd >>
+user_report.txt
+echo "Report saved to user_report.txt"
+
+

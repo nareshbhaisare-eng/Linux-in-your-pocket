@@ -1,0 +1,193 @@
+Chptr 2
+#### List Directory ####
+ls
+ls -l
+ls -a
+ls -lh
+ls -R /etc
+ls –ltr
+
+#### Change Directory ####
+cd /home/user
+cd ..
+cd ~
+cd –
+
+#### Copy File or Directory ####
+cp file1.txt file2.txt
+cp -r dir1/ dir2/
+cp -v src.txt dest.txt
+cp -u new_config.conf /etc/
+
+#### Rename / Move File or Directory ####
+mv oldname.txt newname.txt
+mv -v file.txt /home/user/
+mv -i file1.txt backup/
+
+#### Remove / Delete File or Directory ####
+rm file.txt
+rm -r old_folder/
+rm -rf temp/
+rm -i important.txt
+
+#### Make new Directory ####
+mkdir newdir
+mkdir -p /tmp/project/logs
+mkdir -v -m 755 scripts/
+
+#### Change permission of File or Directory ####
+chmod +x script.sh
+chmod 755 myscript.sh
+chmod -R 644 /var/www/
+chmod --reference=template.txt newfile.txt
+
+#### Change owner & group for File or Directory ####
+chown user file.txt
+chown user:group /path/to/dir
+chown -R root:admin /etc/
+chown --reference=ref.txt target.txt
+
+#### Create file or update timestamp of file ####
+touch newfile.txt
+touch -c maybe_exists.txt
+touch -t 202504210830.00 oldfile.txt
+
+#### Search for files in a directory ####
+find . -name "*.txt"
+find /var/log -type f -size +10M
+find . -mtime -1
+find /tmp -name "*.tmp" -delete
+find . -name "*.log" -exec gzip {} \;
+
+#### Find files using a prebuilt index ####
+locate passwd
+locate -i config
+locate -n 5
+locate --regex '\.conf$'
+
+#### Display a line of text ####
+echo "Hello, world!"
+echo -n "Processing..."
+echo -e "Line1\nLine2"
+
+#### Concatenate and display file content ####
+cat file.txt
+cat -n poem.txt
+cat file1.txt file2.txt > combined.txt
+cat -s notes.txt
+
+#### Output the first part of the files ####
+head file.txt
+head -n 5 log.txt
+head -c 100 data.bin
+head -v -n 3 sample.txt
+
+#### Output the last part of files ####
+tail file.txt
+tail -n 20 messages.log
+tail -f server.log
+tail -c 50 data.bin
+
+#### View text one screen at a time ####
+more /etc/passwd
+more +20 file.txt
+
+#### Advanced file viewer ####
+less /var/log/syslog
+less +G notes.txt
+less /etc/fstab
+
+#### Print working directory ####
+pwd
+
+#### Restart the system ####
+sudo reboot
+sudo reboot --no-wall
+
+#### Power off or restart the system ####
+sudo shutdown -h now
+sudo shutdown -r +5
+sudo shutdown –c
+
+#### Display detailed information about a file ####
+stat file.txt
+stat -c '%n %s %y' file.txt
+
+#### Extract fields or columns from text ####
+cut -d ':' -f1 /etc/passwd
+cut -c1-10 filename.txt
+
+#### Display system information ####
+uname -a
+uname -r
+uname -n
+
+#### Show system uptime ####
+uptime
+
+#### Display or set the system hostname ####
+hostname
+hostname -i
+hostname -f
+
+#### Show memory usage ####
+free -h
+free -m
+
+#### Print effective username ####
+whoami
+
+#### Display user and group IDs ####
+id
+id -u
+id -Gn
+
+#### Switch user ####
+su
+su –
+su -c 'systemctl restart apache2'
+
+#### Execute command as another user ####
+sudo apt update
+sudo -u www-data ls /var/www
+
+#### Display manual pages ####
+man ls
+man -k network
+
+#### Display or set the system date and time ####
+date
+date '+%Y-%m-%d %H:%M:%S'
+sudo date -s '2025-04-29 14:00:00'
+
+#### Search for patterns in files ####
+grep "main" file.c
+grep -i "error" log.txt
+grep -v "404" access.log
+grep -n "pattern" file.txt
+grep -r "TODO" .
+grep -C 2 "something" file.txt
+
+#### Package and compress files ####
+zip files.zip file1 file2
+zip -r archive.zip folder/
+zip -9 best.zip largefile
+zip -e secret.zip secrets.txt
+
+#### Archive files ####
+tar -cvf archive.tar file1 file2
+tar -xvf archive.tar
+tar -czvf archive.tar.gz folder/
+tar -xjvf backup.tar.bz2
+
+#### Simple terminal-based text editor ####
+nano file.txt
+nano -l notes.txt
+
+#### Powerful modal text editor ####
+vim config.txt
+vim +42 file.py
+
+#### GNOME graphical text editor ####
+gedit file.txt &
+gedit --new-window index.html &

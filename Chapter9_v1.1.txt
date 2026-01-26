@@ -1,0 +1,41 @@
+#### commands update package lists, install, remove, or completely purge software on Debian/Ubuntu systems ####
+sudo apt update
+sudo apt install package-name
+sudo apt remove package-name
+sudo apt purge package-name
+
+#### To install and remove package####
+sudo yum install package-name
+sudo dnf install package-name
+sudo dnf remove package-name
+
+#### To update and remove the package ####
+sudo pacman -Syu package-name
+sudo pacman -R package-name
+
+#### Searching for packages ####
+apt search keyword
+dnf search keyword
+pacman -Ss keyword
+
+#### commands update package lists and upgrade installed software ####
+sudo apt update && sudo apt upgrade
+sudo dnf update
+sudo pacman -Syu
+
+#### commands check for and fix broken or unsatisfied package dependencies ####
+sudo apt --fix-broken install
+sudo dnf check
+sudo dnf repoquery –unsatisfied
+
+#### Cleaning cache ####
+sudo apt clean
+sudo apt autoremove
+sudo dnf clean all
+sudo pacman -Sc
+
+#### commands display detailed information about a specific package ####
+apt show package-name
+dnf info package-name
+pacman -Qi package-name
+

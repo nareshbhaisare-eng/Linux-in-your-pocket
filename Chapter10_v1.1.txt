@@ -1,0 +1,67 @@
+#### command shows all groups a user belongs to ####
+groups username
+
+#### to list permissions ####
+ls -l file.txt
+
+####  changes the permission of a file/directory ####
+chmod u+x script.sh
+chmod g-w data.txt
+chmod o=r report.txt
+
+#### Ensure the filesystem supports it ####
+mount -o remount,acl /mountpoint
+
+#### Set ACLs ####
+setfacl -m u:john:rw file.txt
+setfacl -m g:staff:rx file.txt
+getfacl file.txt
+
+#### Find SUID files ####
+find / -perm -4000
+
+#### commands install and configure the UFW firewall to allow, deny, and manage network traffic rules ####
+sudo apt install ufw
+sudo ufw enable
+sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw deny 23
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw status numbered
+
+#### To delete a rule ####
+sudo ufw delete 2
+
+#### commands use iptables to allow specific ports, block other traffic, and save the firewall rules persistently ####
+sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+sudo iptables -A INPUT -j DROP
+sudo apt install iptables-persistent
+
+#### commands display active network connections, listening ports, and scan open ports on the system ####
+ss -tuln
+netstat -tulpn
+nmap -sS localhost
+
+#### commands encrypt a file with a passphrase and decrypt it ####
+gpg -c myfile.txt
+gpg myfile.txt.gpg
+
+#### generate a GPG key pair and encrypt a file for a specific user ####
+gpg --gen-key
+gpg -e -r username file.txt
+
+#### commands encrypt/decrypt a file using AES-256 and generate its SHA-256 checksum ####
+openssl enc -aes-256-cbc -in file.txt -out file.txt.enc
+openssl enc -aes-256-cbc -d -in file.txt.enc -out file.txt
+sha256sum file.txt
+
+#### install ecryptfs utilities and mount an encrypted filesystem ####
+sudo apt install ecryptfs-utils
+sudo mount -t ecryptfs /secret /secret
+
+#### install automatic security updates and perform a system security ####
+sudo apt install unattended-upgrades
+sudo apt install lynis
+sudo lynis audit system

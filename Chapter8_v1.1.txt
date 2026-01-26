@@ -1,0 +1,49 @@
+#### Creating a user ####
+sudo useradd runjhun
+sudo useradd -m -s /bin/bash -c "John Doe" johndoe
+
+#### set a user’s password and verify the user’s account details and system entry ####
+sudo passwd johndoe
+id johndoe
+getent passwd johndoe
+
+#### Modifying existing users ####
+sudo usermod -s /bin/zsh johndoe
+sudo usermod -d /new/home/johndoe -m johndoe
+sudo usermod -l newname oldname
+
+#### Deleting users  and their home directory ####
+sudo userdel username
+sudo userdel -r username
+
+#### Managing groups ####
+sudo groupadd developers
+sudo usermod -aG developers johndoe
+groups johndoe
+
+#### Password aging with chage ####
+sudo chage -l johndoe 
+sudo chage -M 90 johndoe
+sudo chage -W 10 johndoe
+
+#### Locking and unlocking accounts ####
+sudo passwd -l johndoe
+sudo passwd -u johndoe
+
+#### changing ownership ####
+sudo chown user file.txt
+sudo chown user:group file.txt
+
+#### changing group####
+sudo chgrp developers project.txt
+
+####  provides a real-time, dynamic view of running processes ####
+top
+
+####  refresh virtual memory status in every 5 second  ####
+vmstat 5
+
+#### Viewing logs ####
+journalctl
+journalctl -u sshd
+journalctl -b

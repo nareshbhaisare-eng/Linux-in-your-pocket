@@ -1,0 +1,91 @@
+####Listing processes ####
+ps -aux
+ps -ef
+ps -u root
+
+####Real-time view of processes ####
+top
+top -u apache
+
+####Interactive process viewer ####
+htop
+
+####Start a process with a specified priority ####
+nice -n 10 myscript.sh
+
+####Change priority of a process ####
+renice -n 5 -p 1234
+
+####Send a signal to a process ####
+kill 1234
+kill -9 1234
+
+####Kill all processes by name ####
+killall firefox
+processes
+killall -9 apache2 
+
+####Send signal to processes by name ####
+pkill chrome
+pkill -f "python myscript"
+
+####Display background jobs in the current shell ####
+jobs
+
+####Bring the background job to foreground####
+fg %1
+
+####Resume background job####
+bg %2
+
+####Run command immune to hangups ####
+nohup ./myscript.sh &
+
+####&: Run a command in the background ####
+./longtask.sh &
+
+####Remove job from the shell job table ####
+disown %1
+
+####Trace system calls and signals ####
+strace ls
+strace -p 1234
+
+####List open files by processes ####
+lsof -p 1234
+lsof -i :80
+
+####Run a command repeatedly ####
+watch -n 1 ps aux
+
+####Get PID of a process by name ####
+pidof firefox
+
+####Show memory map of a process ####
+pmap 1234
+
+####Set or retrieve CPU affinity ####
+taskset -c 0,1 ./prog 
+taskset -p 1234
+
+####Manage system services  ####
+systemctl status apache2
+systemctl stop apache2
+
+####I/O priority management ####
+ionice -c2 -n0 ./backup.sh
+
+####Query/set scheduling policy ####
+schedtool -R -p 99 -e ./prog
+
+####Job in a recurring manner ####
+crontab -e 0 2 * * * /home/user/backup.sh
+
+####To schedule a job that needs to be executed only once in the future ####
+echo "echo 'Hello from the future' >> ~/future.txt" | at 5pm
+
+####To list the scheduled jobs ####
+atq
+
+####To remove any scheduled job from the list ####
+atrm 2
